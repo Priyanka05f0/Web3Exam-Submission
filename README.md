@@ -14,6 +14,7 @@ The project consists of two main layers:
 * **Faucet Contract:** `0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512`
 * **Network ID:** 31337
 
+
 ## 4. Quick Start
 To run this project locally, follow these steps:
 
@@ -23,6 +24,8 @@ cp .env.example .env
 docker compose up
 # Access at http://localhost:3000
 ```
+
+
 ## 5. Configuration
 
 This project uses environment variables to manage blockchain connections.
@@ -36,6 +39,7 @@ VITE\_FAUCET\_ADDRESS: The address of the deployed Faucet contract.
 These values are loaded automatically in Docker via docker-compose.yml.
 
 
+
 ## 6. Design Decisions
 
 Faucet Drip Amount (100 Tokens): We set the claim amount to 100 tokens to allow users enough balance for testing interactions without draining the pool too quickly.
@@ -45,6 +49,7 @@ Cooldown Period (24 Hours): A strict time-lock was implemented to prevent spammi
 Lifetime Limit (1,000 Tokens): A cap was introduced to prevent a single user from accumulating too much supply over time, encouraging rotation of test tokens.
 
 Separation of Concerns: The Token logic (ERC-20) and Faucet logic are in separate contracts to keep the code modular and secure.
+
 
 
 ## 7. Testing Approach
@@ -58,6 +63,8 @@ Achieved a 100% pass rate on all test suites.
 System Testing: We implemented a Docker Healthcheck using curl to ensure the frontend container is responsive and the server is running correctly before traffic is allowed.
 
 
+
+
 ## 8. Security Considerations
 
 Checks-Effects-Interactions Pattern: Used in the requestTokens function to update the user's lastClaimTime before transferring tokens, preventing reentrancy attacks.
@@ -65,6 +72,8 @@ Checks-Effects-Interactions Pattern: Used in the requestTokens function to updat
 Access Control: The pause() and setPaused() functions are restricted to the admin only, ensuring no unauthorized users can stop the service.
 
 Solidity 0.8+: We used modern Solidity (v0.8.20) which has built-in protection against integer overflow and underflow attacks.
+
+
 
 
 
