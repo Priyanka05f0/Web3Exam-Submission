@@ -1,44 +1,29 @@
-\# ERC-20 Token Faucet DApp
+# ERC-20 Token Faucet DApp
 
+## 1. Project Overview
+This project is a decentralized application (DApp) that implements an ERC-20 Token Faucet. Users can connect their crypto wallets and request a fixed amount of tokens every 24 hours. The system enforces cooldown periods and lifetime claim limits to prevent abuse.
 
+## 2. Architecture
+The project consists of two main layers:
+* **Smart Contracts (Backend):** Built with Solidity and Hardhat. Implements the ERC-20 standard and Faucet logic with admin controls.
+* **Frontend (User Interface):** Built with React and Vite. Connects to the blockchain using Ethers.js.
+* **Infrastructure:** The entire stack is containerized using Docker for easy deployment and consistency.
 
-\## 1. Project Overview
+## 3. Deployed Contracts (Local Hardhat Network)
+* **Token Contract:** `0x5FbDB2315678afecb367f032d93F642f64180aa3`
+* **Faucet Contract:** `0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512`
+* **Network ID:** 31337
 
-This project is a Faucet DApp where users can request ERC-20 tokens. It includes a smart contract with a 24-hour cooldown and lifetime limits, plus a React frontend for easy interaction.
-
-
-
-\## 2. Architecture
-
-\* \*\*Contracts:\*\* Written in Solidity (Token.sol, TokenFaucet.sol).
-
-\* \*\*Frontend:\*\* React + Vite + Ethers.js.
-
-\* \*\*Deployment:\*\* Dockerized for consistent setup.
-
-
-
-\## 3. Deployed Contracts (Localhost)
-
-\* \*\*Token:\*\* 0x5FbDB2315678afecb367f032d93F642f64180aa3
-
-\* \*\*Faucet:\*\* 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
-
-
-
-\## 4. Quick Start
+## 4. Quick Start
+To run this project locally, follow these steps:
 
 ```bash
-
 cp .env.example .env
-
+# Edit .env with your values (optional for local testing)
 docker compose up
+# Access at http://localhost:3000
 
-\# Access at http://localhost:3000
-
-
-
-\## 5. Configuration
+## 5. Configuration
 
 This project uses environment variables to manage blockchain connections.
 
@@ -60,7 +45,7 @@ These values are loaded automatically in Docker via docker-compose.yml.
 
 
 
-\## 6. Design Decisions
+## 6. Design Decisions
 
 Faucet Drip Amount (100 Tokens): We set the claim amount to 100 tokens to allow users enough balance for testing interactions without draining the pool too quickly.
 
@@ -78,7 +63,7 @@ Separation of Concerns: The Token logic (ERC-20) and Faucet logic are in separat
 
 
 
-\## 7. Testing Approach
+## 7. Testing Approach
 
 Smart Contract Testing: We used Hardhat and Chai to write automated unit tests.
 
@@ -96,7 +81,7 @@ System Testing: We implemented a Docker Healthcheck using curl to ensure the fro
 
 
 
-\## 8. Security Considerations
+## 8. Security Considerations
 
 Checks-Effects-Interactions Pattern: Used in the requestTokens function to update the user's lastClaimTime before transferring tokens, preventing reentrancy attacks.
 
@@ -110,7 +95,7 @@ Solidity 0.8+: We used modern Solidity (v0.8.20) which has built-in protection a
 
 
 
-\## 9. Known Limitations
+## 9. Known Limitations
 
 Local State Persistence: Since this project runs on a local Hardhat node, the blockchain state (balances and transactions) will reset if the container or node is restarted.
 
