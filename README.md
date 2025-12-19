@@ -8,7 +8,7 @@ The project consists of two main layers:
 * **Smart Contracts (Backend):** Built with Solidity and Hardhat. Implements the ERC-20 standard and Faucet logic with admin controls.
 * **Frontend (User Interface):** Built with React and Vite. Connects to the blockchain using Ethers.js.
 * **Infrastructure:** The entire stack is containerized using Docker for easy deployment and consistency.
-* graph TD
+graph TD
     User[User with MetaMask] -->|Connects| Frontend[React Frontend]
     Frontend -->|Reads Data| RPC[Blockchain Node (Localhost)]
     Frontend -->|Sends Transactions| RPC
@@ -16,7 +16,6 @@ The project consists of two main layers:
     RPC -->|Interacts| Faucet[Faucet Contract]
     Faucet -->|Mints Tokens| Token
     Docker[Docker Container] -- Hosts --> Frontend
-
 ## 3. Deployed Contracts (Local Hardhat Network)
 * **Token Contract:** `0x5FbDB2315678afecb367f032d93F642f64180aa3`
 * **Faucet Contract:** `0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512`
