@@ -11,13 +11,10 @@ The project consists of two main layers:
 
 ```mermaid
 graph TD
-    User["User with MetaMask"] -->|Connects| Frontend["React Frontend"]
-    Frontend -->|Reads Data| RPC["Blockchain Node (Localhost)"]
-    Frontend -->|Sends Transactions| RPC
-    RPC -->|Interacts| Token["ERC-20 Token Contract"]
-    RPC -->|Interacts| Faucet["Faucet Contract"]
-    Faucet -->|Mints Tokens| Token
-    Docker["Docker Container"] -- Hosts --> Frontend
+    User["User"] -->|1. Connects Wallet| App["Frontend (React)"]
+    App -->|2. Requests Tokens| Node["Local Blockchain"]
+    Node -->|3. Executes| Faucet["Faucet Contract"]
+    Faucet -->|4. Transfers| Token["ERC-20 Token"]
 ```
 
 ## 3. Deployed Contracts (Local Hardhat Network)
